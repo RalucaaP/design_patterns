@@ -5,9 +5,23 @@ import org.example.builder.Car;
 public class CarConfiguration {
 
     public static void main(String[] args) {
-        // TODO: Create and configure different cars using the Builder pattern
+        Car car1 = new Car.Builder()
+                .setEngine("V8")
+                .setTransmission("Automatic")
+                .setInterior("Leather")
+                .setColor("Red")
+                .setSunroof(true)
+                .setGPS(true)
+                .setSafetyPackage(true)
+                .build();
 
-//        Car car1 = new Car....
-//        System.out.println(car1);
+        Car car2 = new Car.Builder()
+                .setEngine("V6")
+                .setTransmission("Manual")
+                .setColor("Blue")
+                .build();
+
+        System.out.println(car1);
+        System.out.println(car2);
     }
 }
