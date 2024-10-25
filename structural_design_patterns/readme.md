@@ -199,6 +199,53 @@ class SMSNotificationDecorator implements Notification {
 }
 ```
 
+```java
+package org.example.structural.service;
+
+import java.util.List;
+
+// Component
+interface Notification {
+    void send(String message);
+}
+
+// Concrete Component
+class EmailNotification implements Notification {
+    public void send(String message) {
+        System.out.println("email sent");
+    }
+}
+
+class SMSNotification implements Notification {
+    public void send(String message) {
+        System.out.println("sms sent");
+    }
+}
+
+// Decorator
+class MultipleNotificationDecorator implements Notification {
+    private List<Notification> wrapped;
+
+    public MultipleNotificationDecorator(Notification... notifications) {
+        this.wrapped = List.of(notifications);
+    }
+
+    public void send(String message) {
+        wrapped.forEach(notif -> notif.send(message));
+        doOneMoreThing(message);        // Additional SMS functionality
+    }
+
+    private void doOneMoreThing(String message) { /* doOneMoreThing */ }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Notification notification = new MultipleNotificationDecorator(new EmailNotification(), new SMSNotification());
+        notification.send("Hello!");  // Sends both email and SMS
+    }
+}
+```
+
 #### Usage Example:
 
 ```java
@@ -357,8 +404,6 @@ public class Main {
     public static void main(String[] args) {
         Image image = new ImageProxy("photo.jpg");
         image.display();  // Loads image
-
- on demand
     }
 }
 ```
@@ -446,10 +491,10 @@ You are tasked with creating a **Book Management System** for a library using Sp
     - Implement a `BookRepository` and `BookService` for basic CRUD operations.
     - **TODO**: Define methods in these layers for book data management.
 
-4**H2 Database Configuration**:
+4. **H2 Database Configuration**:
    - Configure H2 in-memory database with sample data for testing.
    - **RUN CONFIGURATION**: Use the IntelliJ run configuration to start the Spring Boot application. 
-   - Access [h2 console](http://localhost:5001/h2-console)
+   - Access [h2 console](http://localhost:8080/h2-console)
      ```
      Driver Class: org.h2.Driver
      JDBC URL: jdbc:h2:mem:librarydb
