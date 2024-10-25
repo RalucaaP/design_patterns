@@ -1,7 +1,7 @@
-package org.example;
+package org.example.creational;
 
-import org.example.factory.Document;
-import org.example.factory.DocumentFactory;
+import org.example.creational.factory.Document;
+import org.example.creational.factory.DocumentFactory;
 
 public class DocumentEditor {
 

@@ -1,4 +1,4 @@
-package org.example.factory;
+package org.example.creational.factory;
 
 public class WordDocument implements Document {
     @Override
