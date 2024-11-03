@@ -18,6 +18,12 @@ public class InventoryCheckHandler extends OrderValidationHandler {
     }
 
     private boolean checkInventory(Order order) {
+        if (order.getTotalAmount() <= 0) {
+            log.warn("Order ID {} has an invalid total amount for inventory check: {}", order.getId(), order.getTotalAmount());
+            return false;
+        }
+
+        log.debug("Checking inventory for order ID: {}", order.getId());
         return true;
     }
 }
