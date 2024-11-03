@@ -1,8 +1,9 @@
-
 package org.example.command;
 
 import org.example.Order;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class PlaceOrderCommand implements OrderCommand {
     private final Order order;
 
@@ -12,7 +13,7 @@ public class PlaceOrderCommand implements OrderCommand {
 
     @Override
     public void execute() {
-        // TODO: Implement order placement logic
-        System.out.println("Order placed successfully: " + order.getId());
+        order.updateStatus("Placed");
+        log.info("Order placed successfully: {}", order.getId());
     }
 }

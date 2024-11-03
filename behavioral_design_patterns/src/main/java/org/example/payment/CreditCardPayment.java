@@ -1,10 +1,13 @@
-
 package org.example.payment;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class CreditCardPayment implements PaymentStrategy {
+    private static final Logger log = LoggerFactory.getLogger(CreditCardPayment.class);
+
     @Override
     public void pay(double amount) {
-        // TODO: Implement credit card payment logic
-        System.out.println("Paid $" + amount + " with Credit Card.");
+        log.info("Paid ${} with Credit Card.", amount);
     }
 }
